@@ -1,0 +1,6 @@
+{
+  "name": "A Little Merry is on Her Way",
+  "description": "Interactive Pink Christmas baby shower invitation with ribbon untying animation, countdown, guest registries, and an ornament tree guestbook.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

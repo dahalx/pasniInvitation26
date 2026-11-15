@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Little Merry is on Her Way! | Pink Christmas Shower</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-cream: #faf5f5;
+      --pink-soft: #fdf2f4;
+      --pink-accent: #f8ccd5;
+      --pink-deep: #e88d9f;
+      --rose-gold: #c98a7d;
+      --wine: #7e1d35;
+      --wine-dark: #581223;
+      --gold: #d4af37;
+      --text-main: #3d272d;
+      --text-muted: #7a5c65;
+      --shadow-soft: 0 16px 40px rgba(126, 29, 53, 0.08);
+      --shadow-elevated: 0 24px 60px rgba(126, 29, 53, 0.16);
+      --font-serif: "Cormorant Garamond", Georgia, serif;
+      --font-sans: "Montserrat", -apple-system, sans-serif;
+      --font-script: "Pinyon Script", cursive;
+      --radius-lg: 28px;
+      --radius-md: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 20%, #ffffff 0%, var(--pink-soft) 45%, #f5e4e8 100%);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Falling Snow Background */
+    #snow-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      color: #fff;
+      opacity: 0.7;
+      user-select: none;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(105vh) rotate(360deg);
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 30px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ENVELOPE STAGE */
+    #envelope-stage {
+      width: 100%;
+      max-width: 460px;
+      margin-top: 40px;
+      text-align: center;
+      transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .envelope-caption {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-style: italic;
+      color: var(--wine);
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .envelope-box {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      background: linear-gradient(135deg, #fff7f8 0%, #fbe7eb 100%);
+      border-radius: var(--radius-lg);
+      border: 1.5px solid rgba(232, 141, 159, 0.35);
+      box-shadow: var(--shadow-elevated);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+      overflow: hidden;
+    }
+
+    /* Ribbon bands */
+    .ribbon-vertical {
+      position: absolute;
+      width: 48px;
+      height: 100%;
+      background: linear-gradient(90deg, #f1a7b6, #fad2db 45%, #e08b9c);
+      box-shadow: inset 0 0 8px rgba(126, 29, 53, 0.15);
+      z-index: 2;
+      transition: transform 0.8s ease-in-out, opacity 0.6s ease;
+    }
+
+    .ribbon-horizontal {
+      position: absolute;
+      height: 48px;
+      width: 100%;
+      background: linear-gradient(180deg, #f1a7b6, #fad2db 45%, #e08b9c);
+      box-shadow: inset 0 0 8px rgba(126, 29, 53, 0.15);
+      z-index: 2;
+      transition: transform 0.8s ease-in-out, opacity 0.6s ease;
+    }
+
+    .bow-container {
+      position: relative;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+    }
+
+    .bow-svg {
+      width: 120px;
+      height: 110px;
+      filter: drop-shadow(0 6px 12px rgba(126, 29, 53, 0.25));
+      animation: pulseBow 2.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseBow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .tap-hint {
+      margin-top: 24px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--wine);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Untying animation classes */
+    .untying .bow-container {
+      transform: scale(1.3) rotate(-15deg);
+      opacity: 0;
+    }
+    .untying .ribbon-vertical {
+      transform: scaleY(0);
+      opacity: 0;
+    }
+    .untying .ribbon-horizontal {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+
+    /* CARD STAGE */
+    #invitation-card {
+      width: 100%;
+      opacity: 0;
+      transform: translateY(40px) scale(0.97);
+      pointer-events: none;
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #invitation-card.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .card-shell {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 48px 36px 40px;
+      box-shadow: var(--shadow-elevated);
+      border: 1px solid rgba(248, 204, 213, 0.6);
+      position: relative;
+      text-align: center;
+    }
+
+    .ornament-tag {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--wine);
+      background: var(--pink-soft);
+      padding: 6px 18px;
+      border-radius: 50px;
+      border: 1px solid var(--pink-accent);
+      margin-bottom: 20px;
+    }
+
+    .title-script {
+      font-family: var(--font-script);
+      font-size: 3.4rem;
+      color: var(--wine);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .title-sub {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--rose-gold);
+      margin-bottom: 20px;
+    }
+
+    .intro-paragraph {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin: 0 auto 36px;
+    }
+
+    /* Key event info triad */
+    .details-triad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 24px 0;
+      border-top: 1px dashed rgba(248, 204, 213, 0.8);
+      border-bottom: 1px dashed rgba(248, 204, 213, 0.8);
+      margin-bottom: 30px;
+    }
+
+    .triad-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .triad-label {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--wine);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .triad-val {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .rsvp-hint {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .primary-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--wine) 0%, var(--wine-dark) 100%);
+      color: #ffffff;
+      padding: 15px 36px;
+      border-radius: 50px;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(126, 29, 53, 0.28);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(126, 29, 53, 0.36);
+    }
+
+    /* TAB NAVIGATION */
+    .tabs-nav {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 44px 0 20px;
+      background: #ffffff;
+      padding: 6px;
+      border-radius: 50px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--pink-accent);
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 10px 18px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--pink-soft);
+      color: var(--wine);
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(232, 141, 159, 0.25);
+    }
+
+    /* TAB PANELS */
+    .tab-panel {
+      display: none;
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(248, 204, 213, 0.6);
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Countdown Panel */
+    .countdown-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 20px auto;
+      background: radial-gradient(circle, #fff7f8, #f8ccd5);
+      border: 3px solid #ffffff;
+      box-shadow: 0 8px 24px rgba(232, 141, 159, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .days-num {
+      font-family: var(--font-serif);
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--wine);
+      line-height: 1;
+    }
+
+    .days-label {
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .time-subunits {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      margin-top: 12px;
+    }
+
+    /* Where Panel */
+    .map-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 24px 0 18px;
+    }
+
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--wine);
+      background: var(--pink-soft);
+      border: 1px solid var(--pink-accent);
+      transition: all 0.2s;
+    }
+
+    .map-btn:hover {
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(232, 141, 159, 0.3);
+    }
+
+    /* MESSAGE BOARD & ORNAMENT TREE */
+    .tree-stage {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      height: 380px;
+      margin: 20px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tree-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .tree-ornament {
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-origin: center top;
+      animation: swing 4s ease-in-out infinite alternate;
+    }
+
+    .tree-ornament:hover {
+      transform: scale(1.25);
+    }
+
+    @keyframes swing {
+      0% { transform: rotate(-3deg); }
+      100% { transform: rotate(3deg); }
+    }
+
+    /* MODAL WINDOWS */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(88, 18, 35, 0.4);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 460px;
+      padding: 36px 30px;
+      box-shadow: var(--shadow-elevated);
+      position: relative;
+      animation: modalSlide 0.35s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(20px) scale(0.96); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      color: var(--wine);
+      margin-bottom: 8px;
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--pink-accent);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--text-main);
+      background: var(--pink-soft);
+      outline: none;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--rose-gold);
+      background: #ffffff;
+    }
+
+    .ornament-picker {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .color-option {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .color-option.selected {
+      border-color: var(--wine);
+      transform: scale(1.15);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .card-shell {
+        padding: 36px 20px;
+      }
+      .title-script {
+        font-size: 2.8rem;
+      }
+      .details-triad {
+        gap: 6px;
+      }
+      .triad-val {
+        font-size: 0.98rem;
+      }
+      .tabs-nav {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Falling Snow Backdrop -->
+  <div id="snow-container" aria-hidden="true"></div>
+
+  <main>
+    <!-- STEP 1: Interactive Envelope with Bow -->
+    <section id="envelope-stage" aria-label="Invitation envelope">
+      <p class="envelope-caption">Something sweet, wrapped up for you</p>
+      
+      <div class="envelope-box" id="envelope-trigger" role="button" aria-label="Tap to untie bow and open invitation" tabindex="0">
+        <div class="ribbon-vertical"></div>
+        <div class="ribbon-horizontal"></div>
+
+        <div class="bow-container">
+          <!-- Silky Ribbon Bow SVG -->
+          <svg class="bow-svg" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 52C48 24 10 22 14 46C18 70 52 56 60 54Z" fill="#F48BA2" stroke="#E26D87" stroke-width="2"/>
+            <path d="M60 52C72 24 110 22 106 46C102 70 68 56 60 54Z" fill="#F48BA2" stroke="#E26D87" stroke-width="2"/>
+            <path d="M52 56C42 74 26 102 18 106C16 102 38 72 48 56Z" fill="#E26D87"/>
+            <path d="M68 56C78 74 94 102 102 106C104 102 82 72 72 56Z" fill="#E26D87"/>
+            <circle cx="60" cy="54" r="13" fill="#D45371" stroke="#FBE7EB" stroke-width="2"/>
+            <path d="M57 48C59 44 63 44 65 48" stroke="#FFE3E8" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <p class="tap-hint">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Tap to untie the bow
+      </p>
+    </section>
+
+    <!-- STEP 2: The Invitation Card & Interactive Panels -->
+    <section id="invitation-card">
+      <article class="card-shell">
+        <span class="ornament-tag">Baby Shower</span>
+        <h1 class="title-script">A Little Merry</h1>
+        <p class="title-sub">is on her way!</p>
+        <p class="intro-paragraph">
+          With hearts full of joy, we invite you to celebrate our growing family before our sweet holiday arrival.
+        </p>
+
+        <!-- Coordinates Triad -->
+        <div class="details-triad">
+          <div class="triad-col">
+            <span class="triad-label">When</span>
+            <div class="triad-val">Sun, Dec 6<br>4:00 PM</div>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">Where</span>
+            <div class="triad-val">Point of Pines<br>Revere, MA</div>
+          </div>
+          <div class="triad-col">
+            <span class="triad-label">RSVP</span>
+            <div class="triad-val" style="color: var(--wine);">Reply Online<br><small style="font-size:0.75rem; font-weight:400; color:var(--text-muted)">by Nov 20</small></div>
+          </div>
+        </div>
+
+        <p class="rsvp-hint">The full street address is shared with guests once you RSVP.</p>
+
+        <button class="primary-btn" id="open-rsvp-btn">RSVP for the Shower</button>
+      </article>
+
+      <!-- TAB SELECTION -->
+      <nav class="tabs-nav" role="tablist" aria-label="Party details">
+        <button class="tab-btn active" role="tab" aria-selected="true" data-tab="countdown">Countdown</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="where">Where</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="registry">Registry</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="tree">Tree Notes</button>
+      </nav>
+
+      <!-- TAB: COUNTDOWN -->
+      <div class="tab-panel active" id="tab-countdown" role="tabpanel">
+        <p class="ornament-tag">Ticking Down</p>
+        <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--wine);">Countdown to our Pink Christmas</h3>
+        
+        <div class="countdown-circle">
+          <div class="days-num" id="countdown-days">--</div>
+          <div class="days-label">days to go</div>
+        </div>
+        
+        <p class="time-subunits">
+          <span id="countdown-hrs">--</span> hrs · 
+          <span id="countdown-min">--</span> min · 
+          <span id="countdown-sec">--</span> sec
+        </p>
+      </div>
+
+      <!-- TAB: WHERE -->
+      <div class="tab-panel" id="tab-where" role="tabpanel">
+        <p class="ornament-tag">Location</p>
+        <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--wine); margin-top: 6px;">Point of Pines</h2>
+        <p style="color: var(--text-muted); font-size: 1rem;">Revere, Massachusetts</p>
+
+        <div class="map-buttons">
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Point+of+Pines%2C+Revere%2C+MA" target="_blank" rel="noopener">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            Google Maps
+          </a>
+          <a class="map-btn" href="https://maps.apple.com/?q=Point+of+Pines%2C+Revere%2C+MA" target="_blank" rel="noopener">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            Apple Maps
+          </a>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 10px;">
+          Private residence address is automatically unlocked on this page after submitting your RSVP.
+        </p>
+      </div>
+
+      <!-- TAB: REGISTRY -->
+      <div class="tab-panel" id="tab-registry" role="tabpanel">
+        <p class="ornament-tag">Wishes</p>
+        <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--wine); margin-top: 6px;">A Few Wishes</h2>
+        <p style="color: var(--text-muted); line-height: 1.6; margin: 12px auto 24px; max-width: 440px;">
+          Your loving presence is the greatest gift. If you wish to help us feather the nursery, here are our registries:
+        </p>
+        <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+          <a class="map-btn" href="#" target="_blank" style="padding: 12px 24px;">Babylist Registry</a>
+          <a class="map-btn" href="#" target="_blank" style="padding: 12px 24px;">Target Registry</a>
+          <a class="map-btn" href="#" target="_blank" style="padding: 12px 24px;">Amazon Baby Registry</a>
+        </div>
+      </div>
+
+      <!-- TAB: MESSAGE BOARD (ORNAMENT TREE) -->
+      <div class="tab-panel" id="tab-tree" role="tabpanel">
+        <p class="ornament-tag">Guestbook</p>
+        <h2 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--wine);">Leave a Message for Baby</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Every message is an ornament hanging on our little pink tree. Tap any ornament to read.</p>
+        
+        <button class="primary-btn" id="hang-ornament-btn" style="padding: 10px 24px; font-size: 0.78rem; margin: 16px 0 10px;">
+          + Hang an Ornament
+        </button>
+
+        <div class="tree-stage">
+          <!-- Stylized Pink Christmas Tree SVG -->
+          <svg class="tree-svg" viewBox="0 0 340 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Tree Layers -->
+            <polygon points="170,30 220,110 120,110" fill="#fbe7ec" stroke="#f1a7b6" stroke-width="2"/>
+            <polygon points="170,85 245,185 95,185" fill="#fadbe3" stroke="#f1a7b6" stroke-width="2"/>
+            <polygon points="170,155 275,275 65,275" fill="#f7cbd6" stroke="#f1a7b6" stroke-width="2"/>
+            <!-- Trunk -->
+            <rect x="155" y="275" width="30" height="45" fill="#a57262" rx="4"/>
+            <!-- Star on Top -->
+            <polygon points="170,12 174,24 186,24 176,31 180,43 170,36 160,43 164,31 154,24 166,24" fill="#D4AF37"/>
+            <!-- Hanging Ornaments container -->
+            <g id="ornaments-group"></g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP MODAL -->
+    <div class="modal-overlay" id="rsvp-modal">
+      <div class="modal-card">
+        <button class="modal-close" id="close-rsvp">&times;</button>
+        <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--wine); text-align: center; margin-bottom: 8px;">RSVP</h2>
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 24px;">We can’t wait to celebrate with you!</p>
+
+        <form id="rsvp-form">
+          <div class="form-group">
+            <label class="form-label">Your Full Name</label>
+            <input type="text" class="form-input" id="guest-name" required placeholder="e.g. Grandma Sophie" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Will you be attending?</label>
+            <select class="form-select" id="attending-status">
+              <option value="yes">Joyfully accepts with love</option>
+              <option value="no">Regretfully declines with warmth</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Number of Guests</label>
+            <input type="number" class="form-input" id="guest-count" min="1" max="5" value="1" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Dietary Restrictions or Warm Wishes</label>
+            <textarea class="form-textarea" id="dietary-notes" rows="3" placeholder="Vegetarian, allergies, or an early holiday note..."></textarea>
+          </div>
+
+          <button type="submit" class="primary-btn" style="width: 100%;">Confirm RSVP</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- VIEW ORNAMENT NOTE MODAL -->
+    <div class="modal-overlay" id="note-modal">
+      <div class="modal-card" style="text-align: center;">
+        <button class="modal-close" id="close-note">&times;</button>
+        <div id="note-ornament-icon" style="margin-bottom: 16px;"></div>
+        <h3 id="note-author" style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--wine); margin-bottom: 8px;"></h3>
+        <p id="note-message" style="font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; color: var(--text-main); line-height: 1.6; margin-bottom: 20px;"></p>
+        <small id="note-time" style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;"></small>
+      </div>
+    </div>
+
+    <!-- HANG ORNAMENT MODAL -->
+    <div class="modal-overlay" id="add-ornament-modal">
+      <div class="modal-card">
+        <button class="modal-close" id="close-add-ornament">&times;</button>
+        <h2 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--wine); text-align: center; margin-bottom: 8px;">Hang Your Ornament</h2>
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Leave a keepsake wish for our baby daughter</p>
+
+        <form id="ornament-form">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" id="ornament-author" required placeholder="Auntie Emma" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Your Message for Baby</label>
+            <textarea class="form-textarea" id="ornament-text" required rows="3" placeholder="May your days be merry, bright, and filled with love..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Choose Ornament Hue</label>
+            <div class="ornament-picker">
+              <div class="color-option selected" data-color="#e88d9f" style="background:#e88d9f;"></div>
+              <div class="color-option" data-color="#d4af37" style="background:#d4af37;"></div>
+              <div class="color-option" data-color="#7e1d35" style="background:#7e1d35;"></div>
+              <div class="color-option" data-color="#f8ccd5" style="background:#f8ccd5;"></div>
+            </div>
+          </div>
+
+          <button type="submit" class="primary-btn" style="width: 100%;">Hang on Tree</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- THANK YOU / ADDRESS UNLOCKED MODAL -->
+    <div class="modal-overlay" id="thankyou-modal">
+      <div class="modal-card" style="text-align: center;">
+        <button class="modal-close" id="close-thankyou">&times;</button>
+        <p class="ornament-tag">RSVP Confirmed</p>
+        <h2 style="font-family: var(--font-script); font-size: 3rem; color: var(--wine); margin: 8px 0;">Thank You!</h2>
+        <p style="color: var(--text-muted); margin-bottom: 24px;">We are so excited to celebrate with you!</p>
+
+        <div style="background: var(--pink-soft); border-radius: 16px; padding: 20px; border: 1px dashed var(--pink-accent); margin-bottom: 24px;">
+          <h4 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--wine); margin-bottom: 6px;">Shower Location Details</h4>
+          <p style="font-weight: 600; color: var(--text-main);">124 Ocean Avenue</p>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Point of Pines, Revere, MA 02151</p>
+          <p style="margin-top: 8px; font-size: 0.82rem; color: var(--wine);">Sunday, December 6 at 4:00 PM</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a class="primary-btn" id="calendar-btn" href="#" style="text-decoration: none;">Add to My Calendar (.ics)</a>
+          <a class="map-btn" href="https://maps.apple.com/?q=Point+of+Pines%2C+Revere%2C+MA" target="_blank" style="justify-content: center;">Open in Maps</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // --- 1. SNOWFLAKE GENERATOR ---
+    const snowContainer = document.getElementById('snow-container');
+    const snowflakeCount = 28;
+    for (let i = 0; i < snowflakeCount; i++) {
+      const flake = document.createElement('div');
+      flake.classList.add('snowflake');
+      flake.innerHTML = ['❄', '❅', '•', '✧'][Math.floor(Math.random() * 4)];
+      flake.style.left = Math.random() * 100 + 'vw';
+      flake.style.fontSize = Math.random() * 14 + 10 + 'px';
+      flake.style.opacity = Math.random() * 0.6 + 0.3;
+      flake.style.animationDuration = Math.random() * 8 + 6 + 's';
+      flake.style.animationDelay = Math.random() * 5 + 's';
+      snowContainer.appendChild(flake);
+    }
+
+    // --- 2. ENVELOPE UNTYING ANIMATION ---
+    const envelopeTrigger = document.getElementById('envelope-trigger');
+    const envelopeStage = document.getElementById('envelope-stage');
+    const invitationCard = document.getElementById('invitation-card');
+
+    function openInvitation() {
+      envelopeStage.classList.add('untying');
+      setTimeout(() => {
+        envelopeStage.style.display = 'none';
+        invitationCard.classList.add('active');
+      }, 700);
+    }
+
+    envelopeTrigger.addEventListener('click', openInvitation);
+    envelopeTrigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') openInvitation();
+    });
+
+    // --- 3. COUNTDOWN TIMER ---
+    // Target: Sunday, December 6, 2026 at 4:00 PM EST
+    const showerDate = new Date('December 6, 2026 16:00:00 EST').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = showerDate - now;
+
+      if (distance < 0) {
+        document.getElementById('countdown-days').textContent = "0";
+        document.getElementById('countdown-hrs').textContent = "00";
+        document.getElementById('countdown-min').textContent = "00";
+        document.getElementById('countdown-sec').textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown-days').textContent = days;
+      document.getElementById('countdown-hrs').textContent = String(hours).padStart(2, '0');
+      document.getElementById('countdown-min').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('countdown-sec').textContent = String(seconds).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // --- 4. TAB CONTROLLER ---
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        tabPanels.forEach(p => p.classList.remove('active'));
+
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // --- 5. ORNAMENT GUESTBOOK & TREE SYSTEM ---
+    const treeOrnamentsGroup = document.getElementById('ornaments-group');
+    let messages = [
+      { id: 1, author: "Aunt Sarah", note: "Cannot wait to cuddle you, little angel! You are already so loved.", color: "#e88d9f", x: 170, y: 80, time: "Nov 3" },
+      { id: 2, author: "Grandma Rose", note: "Our sweetest Christmas blessing. May your life be filled with laughter.", color: "#d4af37", x: 140, y: 145, time: "Nov 4" },
+      { id: 3, author: "Uncle David", note: "Getting ready to spoil you rotten! See you soon, merry baby girl.", color: "#7e1d35", x: 200, y: 155, time: "Nov 5" },
+      { id: 4, author: "Cousin Chloe", note: "So excited for playdates and pink dresses! 💖", color: "#f8ccd5", x: 115, y: 225, time: "Nov 5" },
+      { id: 5, author: "The Miller Family", note: "Wishing your mom and dad peace and joy on this journey.", color: "#d4af37", x: 225, y: 230, time: "Nov 6" }
+    ];
+
+    function renderOrnaments() {
+      treeOrnamentsGroup.innerHTML = '';
+      messages.forEach(msg => {
+        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        g.classList.add("tree-ornament");
+        g.setAttribute("transform", `translate(${msg.x}, ${msg.y})`);
+        g.style.animationDelay = (Math.random() * 2) + "s";
+        g.addEventListener('click', () => showOrnamentNote(msg));
+
+        // String
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", "0");
+        line.setAttribute("y1", "-12");
+        line.setAttribute("x2", "0");
+        line.setAttribute("y2", "0");
+        line.setAttribute("stroke", "#d4af37");
+        line.setAttribute("stroke-width", "1.2");
+
+        // Bauble
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", "0");
+        circle.setAttribute("cy", "10");
+        circle.setAttribute("r", "10");
+        circle.setAttribute("fill", msg.color);
+        circle.setAttribute("stroke", "#ffffff");
+        circle.setAttribute("stroke-width", "1.5");
+
+        // Shine Highlight
+        const shine = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        shine.setAttribute("cx", "-3");
+        shine.setAttribute("cy", "7");
+        shine.setAttribute("r", "2.5");
+        shine.setAttribute("fill", "#ffffff");
+        shine.setAttribute("opacity", "0.65");
+
+        g.appendChild(line);
+        g.appendChild(circle);
+        g.appendChild(shine);
+        treeOrnamentsGroup.appendChild(g);
+      });
+    }
+
+    renderOrnaments();
+
+    // Show Note Modal
+    const noteModal = document.getElementById('note-modal');
+    function showOrnamentNote(msg) {
+      document.getElementById('note-author').textContent = msg.author;
+      document.getElementById('note-message').textContent = `"${msg.note}"`;
+      document.getElementById('note-time').textContent = `Shared on ${msg.time}`;
+      document.getElementById('note-ornament-icon').innerHTML = `
+        <svg width="40" height="40" viewBox="0 0 24 24">
+          <circle cx="12" cy="14" r="8" fill="${msg.color}" stroke="#fff" stroke-width="2"/>
+          <rect x="10.5" y="4" width="3" height="3" fill="#D4AF37"/>
+        </svg>
+      `;
+      noteModal.classList.add('active');
+    }
+
+    document.getElementById('close-note').addEventListener('click', () => {
+      noteModal.classList.remove('active');
+    });
+
+    // Add Ornament Modal
+    const addOrnamentModal = document.getElementById('add-ornament-modal');
+    document.getElementById('hang-ornament-btn').addEventListener('click', () => {
+      addOrnamentModal.classList.add('active');
+    });
+    document.getElementById('close-add-ornament').addEventListener('click', () => {
+      addOrnamentModal.classList.remove('active');
+    });
+
+    let selectedOrnamentColor = "#e88d9f";
+    const colorOptions = document.querySelectorAll('.color-option');
+    colorOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        colorOptions.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        selectedOrnamentColor = opt.dataset.color;
+      });
+    });
+
+    document.getElementById('ornament-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const author = document.getElementById('ornament-author').value.trim();
+      const text = document.getElementById('ornament-text').value.trim();
+
+      // Random position on tree bounds
+      const x = Math.floor(Math.random() * 140) + 100;
+      const y = Math.floor(Math.random() * 160) + 90;
+
+      messages.push({
+        id: Date.now(),
+        author: author,
+        note: text,
+        color: selectedOrnamentColor,
+        x: x,
+        y: y,
+        time: "Just now"
+      });
+
+      renderOrnaments();
+      addOrnamentModal.classList.remove('active');
+      e.target.reset();
+    });
+
+    // --- 6. RSVP FLOW & THANK YOU ---
+    const rsvpModal = document.getElementById('rsvp-modal');
+    const thankyouModal = document.getElementById('thankyou-modal');
+    const openRsvpBtn = document.getElementById('open-rsvp-btn');
+    const closeRsvpBtn = document.getElementById('close-rsvp');
+    const closeThankyouBtn = document.getElementById('close-thankyou');
+
+    openRsvpBtn.addEventListener('click', () => rsvpModal.classList.add('active'));
+    closeRsvpBtn.addEventListener('click', () => rsvpModal.classList.remove('active'));
+    closeThankyouBtn.addEventListener('click', () => thankyouModal.classList.remove('active'));
+
+    document.getElementById('rsvp-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      rsvpModal.classList.remove('active');
+      thankyouModal.classList.add('active');
+    });
+
+    // Close on backdrop click
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+      });
+    });
+
+    // --- 7. DYNAMIC .ICS CALENDAR FILE GENERATOR ---
+    document.getElementById('calendar-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      const icsData = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//A Little Merry//Pink Christmas Shower//EN",
+        "BEGIN:VEVENT",
+        "SUMMARY:A Little Merry Baby Shower",
+        "DESCRIPTION:Celebrate our growing family at our Pink Christmas baby shower!",
+        "LOCATION:Point of Pines, Revere, MA",
+        "DTSTART:20261206T210000Z",
+        "DTEND:20261207T010000Z",
+        "STATUS:CONFIRMED",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
+      const url = window.URL.createObjectURL(blob);
+      const tempLink = document.createElement('a');
+      tempLink.href = url;
+      tempLink.setAttribute('download', 'Baby-Shower-Invitation.ics');
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
+    });
+  </script>
+</body>
+</html>
