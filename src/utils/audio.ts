@@ -28,7 +28,7 @@ function getAudioContext(): AudioContext | null {
 function getBackgroundAudio(): HTMLAudioElement | null {
   if (typeof window === 'undefined') return null;
   if (!bgAudio) {
-    bgAudio = new Audio('/audio/lullaby-harp.mp3');
+    bgAudio = new Audio(`${import.meta.env.BASE_URL}audio/lullaby-harp.mp3`);
     bgAudio.loop = true;
     bgAudio.volume = 0.45;
     bgAudio.preload = 'auto';

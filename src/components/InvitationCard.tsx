@@ -31,7 +31,7 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
     >
       {/* Subtle Pasni Celebration Dishes Watermark Background */}
       <img
-        src="/assets/aistudio/Daughter_s_Pasni_celebration_dishes_175c2188_2K_471c719b.jpg"
+        src={`${import.meta.env.BASE_URL}assets/aistudio/Daughter_s_Pasni_celebration_dishes_175c2188_2K_471c719b.jpg`}
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.15] pointer-events-none select-none z-0"

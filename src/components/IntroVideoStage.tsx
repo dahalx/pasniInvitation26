@@ -86,7 +86,7 @@ export const IntroVideoStage: React.FC<IntroVideoStageProps> = ({ onContinue, on
       >
         <video
           ref={videoRef}
-          src="/assets/aistudio/Deities_holding_invitation_envelope_a8867fb8_1080p_cf317054.mp4"
+          src={`${import.meta.env.BASE_URL}assets/aistudio/Deities_holding_invitation_envelope_a8867fb8_1080p_cf317054.mp4`}
           autoPlay
           loop
           muted={isMuted}

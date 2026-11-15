@@ -32,7 +32,7 @@ export const EnvelopeStage: React.FC<EnvelopeStageProps> = ({
         className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
       >
         <img
-          src="/assets/aistudio/IMG_20261114_162405_2_2b73687f.jpg"
+          src={`${import.meta.env.BASE_URL}assets/aistudio/IMG_20261114_162405_2_2b73687f.jpg`}
           alt=""
           className="w-full h-full object-cover object-[center_18%] opacity-[0.26]"
           style={{ filter: 'saturate(0.88) contrast(0.95)' }}
