@@ -132,6 +132,40 @@ body {
   animation: pulseSeal 2.8s ease-in-out infinite;
 }
 
+/* Golden Glittering Foil Text Shimmer */
+@keyframes goldGlitterShimmer {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 1px 2px rgba(45, 4, 14, 0.75)) drop-shadow(0 0 6px rgba(243, 208, 107, 0.35));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 1px 2px rgba(45, 4, 14, 0.75)) drop-shadow(0 0 12px rgba(255, 243, 180, 0.75));
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 1px 2px rgba(45, 4, 14, 0.75)) drop-shadow(0 0 6px rgba(243, 208, 107, 0.35));
+  }
+}
+
+.text-gold-glitter {
+  background-image: linear-gradient(
+    115deg,
+    #d4af37 0%,
+    #fff6cc 18%,
+    #f3d06b 34%,
+    #fffbe6 50%,
+    #d4af37 68%,
+    #fff4b8 84%,
+    #d4af37 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: goldGlitterShimmer 3.4s linear infinite;
+}
+
 /* Wishing Album slow-motion realistic 3D book page turn animations */
 .book-stage-3d {
   perspective: 2200px;

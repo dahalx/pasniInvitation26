@@ -3,12 +3,12 @@ import { Volume2, VolumeX, ArrowRight } from 'lucide-react';
 
 interface IntroVideoStageProps {
   onContinue: () => void;
+  onStartMusic: () => void;
 }
 
-export const IntroVideoStage: React.FC<IntroVideoStageProps> = ({ onContinue }) => {
+export const IntroVideoStage: React.FC<IntroVideoStageProps> = ({ onContinue, onStartMusic }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(false);
-  const [autoplayBlockedWithSound, setAutoplayBlockedWithSound] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
 
   const handleProceed = () => {
@@ -18,6 +18,7 @@ export const IntroVideoStage: React.FC<IntroVideoStageProps> = ({ onContinue }) 
     if (videoRef.current) {
       videoRef.current.pause();
     }
+    onStartMusic();
     setTimeout(() => {
       onContinue();
     }, 450);
@@ -35,13 +36,10 @@ export const IntroVideoStage: React.FC<IntroVideoStageProps> = ({ onContinue }) 
       try {
         await vid.play();
         setIsMuted(false);
-        setAutoplayBlockedWithSound(false);
       } catch {
-        // If browser policy blocks unmuted autoplay prior to user gesture,
-        // keep looping visually and unmute cleanly on first click/tap
+        // Keep the intro visible when browser autoplay policy blocks its sound.
         vid.muted = true;
         setIsMuted(true);
-        setAutoplayBlockedWithSound(true);
         try {
           await vid.play();
         } catch {
@@ -53,22 +51,12 @@ export const IntroVideoStage: React.FC<IntroVideoStageProps> = ({ onContinue }) 
     attemptPlay();
   }, []);
 
-  const enableSound = () => {
-    const vid = videoRef.current;
-    if (!vid) return;
-    vid.muted = false;
-    setIsMuted(false);
-    setAutoplayBlockedWithSound(false);
-    vid.play().catch(() => {});
-  };
-
   const toggleMute = (e: React.MouseEvent) => {
     e.stopPropagation();
     const vid = videoRef.current;
     if (!vid) return;
     vid.muted = !vid.muted;
     setIsMuted(vid.muted);
-    setAutoplayBlockedWithSound(false);
     if (!vid.muted) {
       vid.play().catch(() => {});
     }
@@ -91,10 +79,7 @@ export const IntroVideoStage: React.FC<IntroVideoStageProps> = ({ onContinue }) 
 
       {/* Ornate Cinema Video Container */}
       <div
-        onClick={autoplayBlockedWithSound ? enableSound : undefined}
-        className={`relative w-full aspect-video rounded-[26px] overflow-hidden border-2 border-[#d4af37]/80 bg-[#2a0b18] group ${
-          autoplayBlockedWithSound ? 'cursor-pointer' : ''
-        }`}
+        className="relative w-full aspect-video rounded-[26px] overflow-hidden border-2 border-[#d4af37]/80 bg-[#2a0b18] group"
         style={{
           boxShadow: '0 24px 60px rgba(112, 26, 65, 0.28), 0 0 0 4px rgba(247, 220, 232, 0.55)'
         }}
@@ -111,17 +96,6 @@ export const IntroVideoStage: React.FC<IntroVideoStageProps> = ({ onContinue }) 
 
         {/* Subtle warm vignette */}
         <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-[#f3d06b]/40 rounded-[24px]" />
-
-        {/* If browser blocked initial unmuted autoplay, offer an immediate sound prompt */}
-        {autoplayBlockedWithSound && (
-          <button
-            onClick={enableSound}
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#3b202b]/85 hover:bg-[#3b202b] text-[#fff8ef] text-xs font-semibold border border-[#f3d06b]/70 backdrop-blur-sm shadow-lg animate-bounce cursor-pointer"
-          >
-            <Volume2 className="w-4 h-4 text-[#f3d06b]" />
-            <span>Tap for Video Sound</span>
-          </button>
-        )}
 
         {/* Top-Right Video Sound Control */}
         <div className="absolute top-3 right-3 z-20 flex items-center gap-2">

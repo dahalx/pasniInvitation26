@@ -36,22 +36,17 @@ function getBackgroundAudio(): HTMLAudioElement | null {
   return bgAudio;
 }
 
-export function startBackgroundMusic(): boolean {
+export async function startBackgroundMusic(): Promise<boolean> {
   try {
     const audio = getBackgroundAudio();
     if (!audio) return false;
 
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch((err) => {
-        console.warn('Audio playback prevented or failed:', err);
-        isPlaying = false;
-      });
-    }
-    isPlaying = true;
-    return true;
+    await audio.play();
+    isPlaying = !audio.paused;
+    return isPlaying;
   } catch (err) {
-    console.warn('Could not start background audio:', err);
+    console.warn('Audio playback prevented or failed:', err);
+    isPlaying = false;
     return false;
   }
 }

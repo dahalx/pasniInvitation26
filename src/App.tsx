@@ -71,18 +71,13 @@ export default function App() {
       stopBackgroundMusic();
       setIsMusicPlaying(false);
     } else {
-      const started = startBackgroundMusic();
-      if (started) {
-        setIsMusicPlaying(true);
-      }
+      void startBackgroundMusic().then(setIsMusicPlaying);
     }
   };
 
-  // Called ONLY when someone clicks on the envelope
-  const handleStartMusicOnEnvelopeClick = () => {
+  const handleStartMusic = () => {
     if (!isMusicPlaying) {
-      const started = startBackgroundMusic();
-      if (started) setIsMusicPlaying(true);
+      void startBackgroundMusic().then(setIsMusicPlaying);
     }
   };
 
@@ -117,7 +112,7 @@ export default function App() {
       <GoldDustAndFlowers enabled={petalsEnabled} />
 
       {/* Top Header Bar */}
-      <header className="relative z-10 w-full max-w-[700px] mx-auto px-4 sm:px-6 pt-5 pb-2 flex items-center justify-between gap-3">
+      <header className="relative z-20 w-full max-w-[700px] mx-auto px-4 sm:px-6 pt-5 pb-2 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="font-script-pinyon text-2xl sm:text-3xl text-[#701a41] whitespace-nowrap">
             Shriva&apos;s Pasni
@@ -187,11 +182,14 @@ export default function App() {
         {/* Stage 0: Ganesha & Lakshmi Sacred Intro Video (loops with sound until Continue clicked) */}
         {!isEnvelopeOpen ? (
           showIntroVideo ? (
-            <IntroVideoStage onContinue={() => setShowIntroVideo(false)} />
+            <IntroVideoStage
+              onContinue={() => setShowIntroVideo(false)}
+              onStartMusic={handleStartMusic}
+            />
           ) : (
             <EnvelopeStage
               onOpen={handleOpenEnvelope}
-              onStartOpening={handleStartMusicOnEnvelopeClick}
+              onStartOpening={handleStartMusic}
               onReplayIntro={() => {
                 stopBackgroundMusic();
                 setIsMusicPlaying(false);
